@@ -1,0 +1,95 @@
+<div class='card'>
+  <div class='card-header'>
+    {{pageTitle}}
+  </div>
+  <div class='card-body'>
+    <div class='row'>
+      <div class='col-md-2' style="width: 330px;">Filter Result by CustomerCategoryName:</div>
+      <div class='col-md-4'>
+        <input type='text'
+               [(ngModel)]='listFilter'
+               style='vertical-align: auto; align-items: center;' />
+      </div>
+    </div>
+    <div class='row'>
+      <div class='col-md-6'>
+        <h4> </h4>
+      </div>
+      <div class='row'>
+        <div class='col-md-2' style="width: 330px;">Filter Result by CustomerName:</div>
+        <div class='col-md-4'>
+          <input type='text'
+                 [(ngModel)]='listFilterName'
+                 style='align-items: center;'  />
+        </div>
+      </div>
+      <div class='row'>
+        <div class='col-md-6'>
+          <h4> </h4>
+        </div>
+      </div>
+    </div>
+    <div class='container'>
+      <div class="card-body">
+        <div class="col-md-12 order-md-1">
+          <h6>Search by CustomerCategoryName:</h6>
+          <form (ngSubmit)="getCustomerByCategory(categoryName)" #categoryNameForm="ngForm">
+            <div class="col-md-12 mb-1">
+              <input type="text"
+                     class="form-control"
+                     id="categoryCustomer"
+                     placeholder="Type Customer Category Name"
+                     name="categoryName"
+                     required="true"
+                     [(ngModel)]='categoryName'>
+            </div>
+            <button class="btn btn-danger">
+              Get Requested Customers
+            </button>
+            <button class='btn btn-primary'
+                    (click)='getAllCustomers()'
+                    style='width:230px; margin-left:10px'>
+              Get All Customers
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class='row'>
+    <div class='table-responsive'>
+      <table class='table'
+             *ngIf='customerList.length'>
+        <thead>
+          <tr>
+            <th>CustomerName</th>
+            <th>PrimaryContact</th>
+            <th>PhoneNumber</th>
+            <th>CityName </th>
+            <th>CustomerCategoryName</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor='let customer of customerList'>
+            <td>
+              <p>{{ customer.customerName}}</p>
+            </td>
+            <td>
+              <p>{{ customer.primaryContact }}</p>
+            </td>
+            <td>
+              <p>{{ customer.phoneNumber }}</p>
+            </td>
+            <td>
+              <p>{{ customer.cityName }}</p>
+            </td>
+            <td>
+              <p>{{ customer.customerCategoryName }}</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    
+    </div>
+  </div>
+  </div>
+</div>
